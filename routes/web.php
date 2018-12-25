@@ -20,4 +20,13 @@ Route::get('/admin/code','Admin\LoginController@getCode');
 
 //Route::get('/admin/test','Admin\LoginController@test');
 
-Route::get('/admin/index','Admin\IndexController@index');
+
+//中间件.前缀.命名空间
+Route::group(['middleware'=>'adminlogin','prefix'=>'admin','namespace'=>'Admin'],function(){
+
+    Route::get('/index','IndexController@index');
+    Route::get('/info','IndexController@info');
+    Route::get('/quit','IndexController@quit');
+    Route::any('/pass','IndexController@pass');
+
+});

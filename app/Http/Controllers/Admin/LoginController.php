@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 class LoginController extends CommonController
 {
    public function login(){
+        session(['user'=>null]);
         //$pdo = DB::connection()->getPdo();
        //$data=DB::table('user')->get();
 
@@ -30,20 +31,22 @@ class LoginController extends CommonController
 
                 if($input['username']!=$user->username || md5($input['password'])!=$user->password ){
                     return back()->with('msg','用户名或密码错误');
-                }else{
-                    return redirect('admin/index');
                 }
+
+                    session(['user'=>$user]);
+                    return redirect('admin/index');
+
            }else{
                return back()->with('msg','验证码错误');
            }
-       }else{
+       }
             //载入登录界面
             return view('admin.login');
         }
 
 
 
-   }
+
 
     public function getCode()
     {
