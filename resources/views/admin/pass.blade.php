@@ -18,11 +18,15 @@
 
     <!--错误提示框-->
     <div class="result_title">
-        @if(count($errors)>1)
+        @if(count($errors)>0)
         <div class="mark">
+            @if(is_object($errors))
             @foreach($errors->all() as $error)
             <p>{{$error}}</p>
              @endforeach
+             @else
+                <p>{{$errors}}</p>
+             @endif
         </div>
          @endif
     </div>
@@ -47,7 +51,7 @@
                 <tr>
                     <th><i class="require">*</i>确认密码：</th>
                     <td>
-                        <input type="password" name="password_c"> </i>再次输入密码</span>
+                        <input type="password" name="password_confirmation"> </i>再次输入密码</span>
                     </td>
                 </tr>
                 <tr>

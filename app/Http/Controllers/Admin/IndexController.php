@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -51,7 +52,16 @@ class IndexController extends CommonController
 
                  //如果验证通过
                  if($validator->passes()){
-                     echo "ok";
+                     $user=User::first();
+                     if(md5($input['password_o'])==$user->password){
+                         $user->password=md5($input['password']);
+                         $user->update();
+                         return back()->with('errors','密码修改成功');
+
+                     }else{
+                         return back()->with('errors','原密码不正确');
+                     }
+
                  }else{
                      //dd($validator->errors());
                      return back()->withErrors($validator);
