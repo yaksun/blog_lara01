@@ -5,6 +5,11 @@
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
         <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo;  分类管理
     </div>
+    <!--结果集标题与导航组件 开始-->
+    <div class="result_wrap">
+        <div class="result_title">
+            <h3>快捷操作</h3>
+        </div>
     <!--面包屑导航 结束-->
 
     <!--结果页快捷搜索框 开始-->
@@ -35,9 +40,8 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="#"><i class="fa fa-plus"></i>新增文章</a>
-                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
-                    <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                    <a href="{{url('admin/category/create')}}"><i class="fa fa-plus"></i>新增分类</a>
+                    <a href="{{url('admin/category')}}"><i class="fa fa-recycle"></i>分类列表</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -66,14 +70,14 @@
                         <td>{{$v->cate_title}}</td>
                         <td>{{$v->cate_view}}</td>
                         <td>
-                            <a href="#">修改</a>
-                            <a href="#">删除</a>
+                            <a href="{{url('admin/category').'/'.$v->cate_id}}">修改</a>
+                            <a href="javascript:;" onclick="delCate({{$v->cate_id}})">删除</a>
                         </td>
                     </tr>
                     @endforeach
                 </table>
 
-
+{{--
                 <div class="page_nav">
                     <div>
                         <a class="first" href="/wysls/index.php/Admin/Tag/index/p/1.html">第一页</a>
@@ -101,7 +105,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">&raquo;</a></li>
                     </ul>
-                </div>
+                </div>--}}
             </div>
         </div>
     </form>
@@ -114,6 +118,28 @@
                     layer.alert(data.msg, {icon: 6});
                 }
            });
+        }
+
+        function delCate(cate_id) {
+            //询问框
+            layer.confirm('你确定要删除该分类吗', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                    $.post("{{url('admin/category')}}"+'/'+cate_id,{'_method':'delete','_token':'{{csrf_token()}}',cate_id:cate_id},function (data) {
+                        if(data.status==0){
+                            location.href=location.href;
+                            layer.alert(data.msg, {icon: 6});
+                        }else{
+                            layer.alert(data.msg, {icon: 5});
+                        }
+                    });
+            }, function(){
+
+                /*layer.msg('也可以这样', {
+                    time: 20000, //20s后自动关闭
+                    btn: ['明白了', '知道了']
+                });*/
+            });
         }
     </script>
 @endsection

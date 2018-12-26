@@ -37,7 +37,7 @@ class IndexController extends CommonController
     public function pass()
     {
              if($input=Input::all()){
-                 //dd($input);
+                 //修改密码的验证
                  $rule=[
                      'password'=>'required|between:6,20|confirmed',
                  ];
