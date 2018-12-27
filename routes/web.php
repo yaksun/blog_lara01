@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 
 //后台登录路由
-Route::any('/admin/login','Admin\LoginController@login');
-Route::get('/admin/code','Admin\LoginController@getCode');
+Route::any('admin/login','Admin\LoginController@login');
+Route::get('admin/code','Admin\LoginController@getCode');
 
 //Route::get('/admin/test','Admin\LoginController@test');
 
@@ -27,13 +27,19 @@ Route::get('/admin/code','Admin\LoginController@getCode');
 Route::group(['middleware'=>'adminlogin','prefix'=>'admin','namespace'=>'Admin'],function(){
 
     //后台首页路由
-    Route::get('/index','IndexController@index');
-    Route::get('/info','IndexController@info');
-    Route::get('/quit','IndexController@quit');
-    Route::any('/pass','IndexController@pass');
+    Route::get('index','IndexController@index');
+    Route::get('info','IndexController@info');
+    Route::get('quit','IndexController@quit');
+    Route::any('pass','IndexController@pass');
 
     //后台分类路由
-    Route::resource('/category','CategoryController');
-    Route::post('/category/changeorder','CategoryController@changeOrder');
+    Route::resource('category','CategoryController');
+    Route::post('category/changeorder','CategoryController@changeOrder');
+
+    //后台文章路由
+    Route::resource('article','ArticleController');
+
+    //上传文件路由
+    Route::any('upload','CommonController@upload');
 
 });
