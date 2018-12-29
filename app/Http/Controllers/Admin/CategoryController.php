@@ -119,9 +119,11 @@ class CategoryController extends CommonController
         $input=Input::except('_token');
         $rule=[
             'cate_name'=>'required',
+            'cate_order'=>'required',
         ];
         $msg=[
             'cate_name.required'=>'分类名称必须填写',
+            'cate_order.required'=>'排序必须填写',
         ];
 
         $validator=Validator::make($input,$rule,$msg);

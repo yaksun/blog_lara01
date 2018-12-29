@@ -3,14 +3,14 @@
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 修改分类
+        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 分类管理
     </div>
     <!--面包屑导航 结束-->
 
     <!--结果集标题与导航组件 开始-->
     <div class="result_wrap">
         <div class="result_title">
-            <h3>快捷操作</h3>
+            <h3>修改分类</h3>
             @if(count($errors)>0)
                 <div class="mark">
                     @if(is_object($errors))
@@ -56,17 +56,17 @@
                 <tr>
                     <th><i class="require">*</i>分类名称</th>
                     <td>
-                        <input type="text" name="cate_name" value="{{$field->cate_name}}">
+                        <input type="text" name="cate_name" class="lg" value="{{$field->cate_name}}">
                     </td>
                 </tr>
                 <tr>
                     <th>标题</th>
                     <td>
-                        <input type="text" name="cate_title" value="{{$field->cate_title}}">
+                        <input type="text" name="cate_title" class="lg"  value="{{$field->cate_title}}">
                     </td>
                 </tr>
 
-                <tr>
+               {{-- <tr>
                     <th>描述：</th>
                     <td>
                         <input type="text" name="cate_description" value="{{$field->cate_description}}"  class="lg">
@@ -78,7 +78,7 @@
                         <input type="text" name="cate_keywords"  value="{{$field->cate_keywords}}" class="lg">
 
                     </td>
-                </tr>
+                </tr>--}}
                 <tr>
                     <th>排序</th>
                     <td>

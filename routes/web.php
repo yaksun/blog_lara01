@@ -38,8 +38,17 @@ Route::group(['middleware'=>'adminlogin','prefix'=>'admin','namespace'=>'Admin']
 
     //后台文章路由
     Route::resource('article','ArticleController');
-
     //上传文件路由
     Route::any('upload','CommonController@upload');
+
+
+    //后台配置项路由
+    Route::resource('conf','ConfController');
+    Route::post('conf/changeorder','ConfController@changeOrder');
+    Route::post('conf/changecontent','ConfController@changeContent');
+    Route::get('putfile','ConfController@putFile');
+
+
+
 
 });

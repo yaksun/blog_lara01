@@ -23,4 +23,6 @@ class CommonController extends Controller
             return $newPath='uploads/'.$fileName;
         }
     }
+
+
 }
