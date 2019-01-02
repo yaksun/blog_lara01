@@ -58,9 +58,7 @@
                 </table>
                 <div class="page_list">
                    {{$data->links()}}
-                    <style>
 
-                    </style>
                 </div>
             </div>
         </div>

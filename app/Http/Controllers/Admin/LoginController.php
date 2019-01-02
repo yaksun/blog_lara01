@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 require_once '/resources/org/code/Code.class.php';
+use App\Http\Model\Category;
 use App\Http\Model\User;
 use Illuminate\Http\Request;
 
@@ -54,6 +55,12 @@ class LoginController extends CommonController
         echo $code->make();
    }
 
+   /* public function test()
+    {
+        $category=Category::whereIn('cate_id',[38,39,40])->get();
+        dd($category);
+
+   }*/
   /*  public function test()
     {
         $b=User::insertGetId(

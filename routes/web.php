@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Home\IndexController@index');
+Route::get('cate/{cate_id}', 'Home\IndexController@cate');
+Route::get('a/{art_id}', 'Home\IndexController@article');
+//Route::get('admin/test', 'Admin\LoginController@test');
 
 
 //后台登录路由
@@ -48,7 +49,12 @@ Route::group(['middleware'=>'adminlogin','prefix'=>'admin','namespace'=>'Admin']
     Route::post('conf/changecontent','ConfController@changeContent');
     Route::get('putfile','ConfController@putFile');
 
+    //后台友情链接路由
+    Route::resource('links','LinksController');
+    Route::post('links/changeorder','LinksController@changeOrder');
 
-
+    //后台自定义导航路由
+    Route::resource('navs','NavsController');
+    Route::post('navs/changeorder','NavsController@changeOrder');
 
 });

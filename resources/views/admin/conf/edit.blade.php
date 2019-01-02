@@ -51,12 +51,12 @@
                         <input type="text" name="conf_title"  value="{{$field->conf_title}}"><span>配置标题必须填写</span>
                     </td>
                 </tr>
-                <tr>
+              {{--  <tr>
                     <th>内容:</th>
                     <td>
                         <input type="text" name="conf_content" class="lg"  value="{{$field->conf_content}}">
                     </td>
-                </tr>
+                </tr>--}}
                 <tr>
                     <th>字段类型:</th>
                     <td>
